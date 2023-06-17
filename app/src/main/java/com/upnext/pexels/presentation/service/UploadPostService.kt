@@ -94,8 +94,8 @@ class UploadPostService : Service() {
         val totalPosts = posts.size
         val coroutineScope = CoroutineScope(Dispatchers.IO)
 
-        posts.forEachIndexed { index, post ->
-
+        for (post in posts) {
+            val index = posts.indexOf(post)
             val progressText = "Uploading video ${index + 1} of $totalPosts"
             val progress = ((index + 1) * 100) / totalPosts
 

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
@@ -29,11 +30,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.upnext.pexels.R
 import com.upnext.pexels.common.Constants
 import com.upnext.pexels.presentation.main_navigation.components.CircleButton
+import com.upnext.pexels.presentation.main_navigation.profile.ProfileViewModel
+import com.upnext.pexels.presentation.main_navigation.profile.components.CircleImageView
 import com.upnext.pexels.presentation.ui.theme.PexelsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,9 +51,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             PexelsTheme {
 
+                val profileViewModel : ProfileViewModel = hiltViewModel()
+
                 val navController = rememberNavController()
 
                 val backStackEntry = navController.currentBackStackEntryAsState()
+
 
 
                 Scaffold(
@@ -155,8 +163,27 @@ class MainActivity : ComponentActivity() {
                                     }
                                 },
                                 icon = {
-                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Icon(imageVector = Icons.Default.AccountBox, contentDescription = "Profile")
+
+                                    if (Constants.isLoggedIn()){
+                                        profileViewModel.state.value.user?.let {
+                                            CircleImageView(
+                                                image = it.image.ifEmpty { R.drawable.no_profile_image },
+                                                size = 35.dp
+                                            )
+                                        }
+
+                                        if (profileViewModel.state.value.error.isNotBlank()){
+                                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                                Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile")
+                                            }
+                                        }
+                                    }else {
+                                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                            Icon(
+                                                imageVector = Icons.Default.AccountCircle,
+                                                contentDescription = "Profile"
+                                            )
+                                        }
                                     }
                                 },
                                 selectedContentColor = Color.Black,
@@ -166,9 +193,7 @@ class MainActivity : ComponentActivity() {
                     }
                 ) {
                     it
-
                     Navigation(navController = navController)
-
                 }
             }
         }

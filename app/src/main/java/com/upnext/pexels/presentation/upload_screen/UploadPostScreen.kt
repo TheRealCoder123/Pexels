@@ -44,6 +44,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -118,7 +119,7 @@ fun UploadPostScreen(
                         }) {
                             Icon(
                                 Icons.Default.ArrowBack,
-                                contentDescription = "Back",
+                                contentDescription = stringResource(id = R.string.back),
                                 tint = Color.Black
                             )
                         }
@@ -126,18 +127,18 @@ fun UploadPostScreen(
                         Row {
 
                             Box(modifier = Modifier.padding(5.dp)){
-                                BlueButton(text = "Select More"){
+                                BlueButton(text = stringResource(R.string.select_more)){
                                     launcher.launch(arrayOf("image/*", "video/*"))
                                 }
                             }
 
                             Box(modifier = Modifier.padding(5.dp)){
-                                BlueButton(text = "Upload"){
+                                BlueButton(text = stringResource(R.string.upload)){
                                     scope.launch {
                                         if(viewModel.selectedCategories.isEmpty()) {
                                             Toast.makeText(
                                                 context,
-                                                "Please select at least one category",
+                                                R.string.please_select_at_least_one_category,
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                             return@launch
@@ -169,7 +170,7 @@ fun UploadPostScreen(
 
 
                 Text(
-                    text = "${currentSelectUriId+1} of ${viewModel.selectedMedia.size}",
+                    text = "${currentSelectUriId+1} ${stringResource(id = R.string.of)} ${viewModel.selectedMedia.size}",
                     fontSize = 20.sp,
                     color = Color.Black,
                 )
@@ -188,12 +189,12 @@ fun UploadPostScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                WhiteGrayOutlinedButton(text = "Delete this media") {
+                WhiteGrayOutlinedButton(text = stringResource(R.string.delete_this_media)) {
                     viewModel.selectedMedia.remove(viewModel.currentSelectItem.value)
                     if (viewModel.selectedMedia.isNotEmpty()){
                         viewModel.currentSelectItem.value = viewModel.selectedMedia[0]
                     }else{
-                        Toast.makeText(context, "No media to upload, please select media for upload", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.no_media_to_upload_please_select_media_for_upload, Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -223,7 +224,7 @@ fun UploadPostScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 25.dp),
-                    text = "Information",
+                    text = stringResource(R.string.information),
                     textAlign = TextAlign.Start,
                     fontSize = 25.sp
                 )
@@ -233,7 +234,7 @@ fun UploadPostScreen(
                 GrayBgTextField(
                     value = viewModel.locationTextFieldState.value,
                     onValueChange = { viewModel.locationTextFieldState.value = it },
-                    label = "Location (Optional)",
+                    label = stringResource(R.string.location_optional),
                     inputType = KeyboardType.Text
                 )
 
@@ -242,7 +243,7 @@ fun UploadPostScreen(
                 GrayBgTextField(
                     value = viewModel.tagsTextFieldState.value,
                     onValueChange = { viewModel.tagsTextFieldState.value = it },
-                    label = "Tags (Optional)",
+                    label = stringResource(R.string.tags_optional),
                     inputType = KeyboardType.Text
                 )
 
@@ -250,7 +251,7 @@ fun UploadPostScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 15.dp)){
                     Text(
-                        text = "Separate the tags by comma ex. nature, artic nature",
+                        text = stringResource(R.string.separate_the_tags_by_comma_ex_nature_artic_nature),
                         color = Color.Gray
                     )
                 }
@@ -261,12 +262,13 @@ fun UploadPostScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 25.dp),
-                    text = "Categories",
+                    text = stringResource(R.string.categories),
                     textAlign = TextAlign.Start,
                     fontSize = 25.sp
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
+
 
                 LazyRow {
                     items(getCategories()){category->
@@ -307,7 +309,7 @@ fun UploadPostScreen(
             item {
 
                 Text(
-                    text = "Upload Your Content",
+                    text = stringResource(R.string.upload_your_content),
                     fontSize = 25.sp,
                     color = Color.Black,
                 )
@@ -316,7 +318,7 @@ fun UploadPostScreen(
 
 
                 Text(
-                    text = "Join hundreds of creators all around the world.",
+                    text = stringResource(R.string.join_hundreds_of_creators_all_around_the_world),
                     fontSize = 15.sp,
                     color = Color.DarkGray,
                 )
@@ -324,7 +326,7 @@ fun UploadPostScreen(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Box(modifier = Modifier.padding(horizontal = 50.dp, vertical = 10.dp)){
-                    GreenButton(text = "Select media") {
+                    GreenButton(text = stringResource(R.string.select_media)) {
                         launcher.launch(arrayOf("image/*", "video/*"))
                     }
                 }

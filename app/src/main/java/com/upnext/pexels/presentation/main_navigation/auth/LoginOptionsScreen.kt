@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
@@ -53,7 +54,7 @@ fun LoginOptionsScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize(),
                 painter = painterResource(id = R.drawable.auth_bg),
-                contentDescription = "Collage Image",
+                contentDescription = stringResource(R.string.collage_image),
                 contentScale = ContentScale.FillBounds,
             )
         }
@@ -84,12 +85,12 @@ fun LoginOptionsScreen(navController: NavController) {
 
                 Image(
                     painter = painterResource(id = R.drawable.pexels_logo),
-                    contentDescription = "Pexels Logo",
+                    contentDescription = stringResource(R.string.pexels_logo),
                     modifier = Modifier.size(200.dp)
                 )
 
                 Text(
-                    text = "Thousands of amazing photos & videos. For Free.",
+                    text = stringResource(R.string.thousands_of_amazing_photos_videos_for_free),
                     color = Color.White,
                     style = MaterialTheme.typography.headlineMedium,
                     textAlign = TextAlign.Center,
@@ -115,12 +116,12 @@ fun LoginOptionsScreen(navController: NavController) {
                     ) {
                         Icon(
                             imageVector = Icons.Default.Email,
-                            contentDescription = "Continue with e-mail",
+                            contentDescription = stringResource(R.string.continue_with_e_mail),
                             tint = Color.Gray,
                             modifier = Modifier.padding(end = 8.dp)
                         )
                         Text(
-                            text = "Continue with e-mail",
+                            text = stringResource(R.string.continue_with_e_mail),
                             color = Color.Black
                         )
                     }
@@ -141,12 +142,12 @@ fun LoginOptionsScreen(navController: NavController) {
                     ) {
                         Icon(
                             imageVector = Icons.Default.AccountCircle,
-                            contentDescription = "Continue with google",
+                            contentDescription = stringResource(R.string.continue_with_google),
                             tint = Color.Gray,
                             modifier = Modifier.padding(end = 8.dp)
                         )
                         Text(
-                            text = "Continue with google",
+                            text = stringResource(R.string.continue_with_google),
                             color = Color.Black
                         )
                     }
@@ -166,7 +167,7 @@ fun LoginOptionsScreen(navController: NavController) {
                                 fontSize = 18.sp
                             )
                         ){
-                            append("Already got an account?")
+                            append(stringResource(R.string.already_got_an_account))
                         }
                         withStyle(
                             style = SpanStyle(
@@ -174,7 +175,7 @@ fun LoginOptionsScreen(navController: NavController) {
                                 fontSize = 18.sp
                             )
                         ){
-                            append(" Sign In")
+                            append(stringResource(R.string.sign_in))
                         }
                     },
                     textAlign = TextAlign.Center

@@ -5,8 +5,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.upnext.pexels.common.Constants
+import com.upnext.pexels.presentation.main_navigation.AddSocialScreen.AddSocialsScreen
 import com.upnext.pexels.presentation.main_navigation.ChangeProfile.ChangeProfileScreen
 import com.upnext.pexels.presentation.main_navigation.profile.ProfileScreen
 import com.upnext.pexels.presentation.main_navigation.settings.SettingsScreen
@@ -37,6 +37,11 @@ fun AuthScreen() {
         }
         composable(AuthScreens.PersonalInfoScreen.route) {
             ChangeProfileScreen {
+                navController.navigateUp()
+            }
+        }
+        composable(AuthScreens.AddSocialsScreen.route + "/{${Constants.PARAM_WHAT_SOCIAL_SHOULD_ADD}}") {
+            AddSocialsScreen {
                 navController.navigateUp()
             }
         }

@@ -8,5 +8,6 @@ sealed class AuthScreens(val route: String) {
     object ProfileScreen : AuthScreens("profile_screen")
     object SettingsScreen : AuthScreens("settings_screen")
     object PersonalInfoScreen : AuthScreens("personal_info_screen")
+    object AddSocialsScreen : AuthScreens("add_socials_screen")
 
 }

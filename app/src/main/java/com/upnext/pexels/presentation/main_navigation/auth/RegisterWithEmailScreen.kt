@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.upnext.pexels.R
 import com.upnext.pexels.data.remote.RegisterParams
 import com.upnext.pexels.presentation.components.GreenButton
 import com.upnext.pexels.presentation.main_navigation.auth.components.CustomTextField
@@ -82,7 +84,7 @@ fun RegisterWithEmailScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = "back",
+                                contentDescription = stringResource(R.string.back),
                                 tint = Color.White
                             )
                         }
@@ -93,7 +95,7 @@ fun RegisterWithEmailScreen(
 
                 Box(modifier = Modifier.padding(10.dp)) {
                     Text(
-                        text = "Join Pexels",
+                        text = stringResource(R.string.join_pexels),
                         color = Color.White,
                         fontSize = 40.sp
                     )
@@ -101,7 +103,7 @@ fun RegisterWithEmailScreen(
 
                 Box(modifier = Modifier.padding(20.dp)) {
                     Text(
-                        text = "Join a huge community of amazing photographers from all around the world.",
+                        text = stringResource(R.string.join_a_huge_community_of_amazing_photographers_from_all_around_the_world),
                         color = Color.DarkGray,
                         fontSize = 19.sp,
                         textAlign = TextAlign.Center
@@ -115,7 +117,7 @@ fun RegisterWithEmailScreen(
                     onValueChange = {
                         viewModel.firstNameTextFieldState.value = it
                     },
-                    label = "First name",
+                    label = stringResource(R.string.first_name),
                     inputType = KeyboardType.Text
                 )
 
@@ -126,7 +128,7 @@ fun RegisterWithEmailScreen(
                     onValueChange = {
                         viewModel.lastNameTextFieldState.value = it
                     },
-                    label = "Lastname",
+                    label = stringResource(R.string.lastname),
                     inputType = KeyboardType.Text
                 )
 
@@ -137,7 +139,7 @@ fun RegisterWithEmailScreen(
                     onValueChange = {
                         viewModel.emailTextFieldState.value = it
                     },
-                    label = "Email",
+                    label = stringResource(R.string.email),
                     inputType = KeyboardType.Email
                 )
 
@@ -148,7 +150,7 @@ fun RegisterWithEmailScreen(
                     onValueChange = {
                         viewModel.passwordTextFieldState.value = it
                     },
-                    label = "Password",
+                    label = stringResource(R.string.password),
                     inputType = KeyboardType.Password
                 )
 
@@ -157,7 +159,7 @@ fun RegisterWithEmailScreen(
                 Box(modifier = Modifier
                     .fillMaxWidth()
                     .padding(15.dp)){
-                    GreenButton(text = "Create an account") {
+                    GreenButton(text = stringResource(R.string.create_an_account)) {
                         scope.launch {
                             val registerParams = RegisterParams(
                                 viewModel.firstNameTextFieldState.value,
@@ -175,7 +177,7 @@ fun RegisterWithEmailScreen(
                         if (state.accountCreated){
                             Toast.makeText(
                                 context,
-                                "Account Created! Now you can log in",
+                                R.string.account_created_now_you_can_log_in,
                                 Toast.LENGTH_SHORT).show()
                             navController.navigateUp()
                         }

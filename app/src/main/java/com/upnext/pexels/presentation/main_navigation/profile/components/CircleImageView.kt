@@ -19,13 +19,14 @@ import com.upnext.pexels.R
 @Composable
 fun CircleImageView(
     image: Any,
-    size: Dp = 150.dp
+    size: Dp = 150.dp,
+    modifier: Modifier = Modifier
 ) {
 
     GlideImage(
         model = image,
         contentDescription = "Profile Image",
-        modifier = Modifier
+        modifier = modifier
             .size(size)
             .clip(CircleShape),
         contentScale = ContentScale.Crop

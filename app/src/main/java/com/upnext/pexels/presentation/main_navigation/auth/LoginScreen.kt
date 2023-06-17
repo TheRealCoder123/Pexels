@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.upnext.pexels.R
 import com.upnext.pexels.data.remote.LoginParams
 import com.upnext.pexels.presentation.components.GreenButton
 import com.upnext.pexels.presentation.main_navigation.auth.components.CustomTextField
@@ -70,7 +72,7 @@ fun LoginScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = "back",
+                                contentDescription = stringResource(id = R.string.back),
                                 tint = Color.White
                             )
                         }
@@ -80,7 +82,7 @@ fun LoginScreen(
 
                 Box(modifier = Modifier.padding(10.dp)) {
                     Text(
-                        text = "Log In",
+                        text = stringResource(R.string.log_in),
                         color = Color.White,
                         fontSize = 40.sp
                     )
@@ -88,7 +90,7 @@ fun LoginScreen(
 
                 Box(modifier = Modifier.padding(20.dp)) {
                     Text(
-                        text = "Welcome back! Enter your details bellow",
+                        text = stringResource(R.string.welcome_back_enter_your_details_bellow),
                         color = Color.DarkGray,
                         fontSize = 19.sp,
                         textAlign = TextAlign.Center
@@ -100,7 +102,7 @@ fun LoginScreen(
                     onValueChange = {
                         viewModel.emailTextFieldState.value = it
                     },
-                    label = "Email",
+                    label = stringResource(id = R.string.email),
                     inputType = KeyboardType.Email
                 )
 
@@ -111,7 +113,7 @@ fun LoginScreen(
                     onValueChange = {
                         viewModel.passwordTextFieldState.value = it
                     },
-                    label = "Password",
+                    label = stringResource(id = R.string.password),
                     inputType = KeyboardType.Password
                 )
 
@@ -123,7 +125,7 @@ fun LoginScreen(
                     .fillMaxWidth()
                     .padding(15.dp)
                 ){
-                    GreenButton(text = "Log In") {
+                    GreenButton(text = stringResource(id = R.string.log_in)) {
                         scope.launch {
                             viewModel.login(
                                 LoginParams(
@@ -140,7 +142,7 @@ fun LoginScreen(
                         if (state.isLoggedIn){
                             Toast.makeText(
                                 context,
-                                "Successfully logged in! Enjoy",
+                                R.string.successfully_logged_in_enjoy,
                                 Toast.LENGTH_SHORT).show()
                             navController.navigate(AuthScreens.ProfileScreen.route) {
                                 popUpTo(navController.graph.startDestinationRoute!!) {

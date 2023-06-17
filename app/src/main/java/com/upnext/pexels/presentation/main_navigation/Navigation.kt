@@ -16,7 +16,7 @@ import com.upnext.pexels.presentation.upload_screen.UploadPostScreen
 fun Navigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Home.route){
         composable(Screen.Home.route){
-            HomeScreen(navController)
+            HomeScreen(navController = navController)
         }
         composable(Screen.Search.route){
             SearchScreen()

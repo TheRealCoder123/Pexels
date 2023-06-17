@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.upnext.pexels.common.Constants
 import com.upnext.pexels.common.Resource
 import com.upnext.pexels.data.repository.IUserRepository
 import com.upnext.pexels.domain.repository.UserRepository
@@ -27,8 +28,10 @@ class ProfileViewModel @Inject constructor(
     val postsState : State<PostsState> = _postsState
 
     init {
-        getUserData()
-        getUserPosts()
+        if (Constants.isLoggedIn()){
+            getUserData()
+            getUserPosts()
+        }
     }
 
     private fun getUserData() = viewModelScope.launch {

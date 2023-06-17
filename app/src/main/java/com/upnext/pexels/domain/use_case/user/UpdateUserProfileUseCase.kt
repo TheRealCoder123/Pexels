@@ -9,10 +9,10 @@ import javax.inject.Inject
 class UpdateUserProfileUseCase @Inject constructor(
     private val userRepository: IUserRepository
 ) {
-    operator fun invoke(field: String, value: String) : Flow<Resource<Boolean>> = flow {
+    operator fun invoke(userHashMap: HashMap<String, Any>) : Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
-            userRepository.updateUserProfile(field, value)
+            userRepository.updateUserProfile(userHashMap)
             emit(Resource.Success(true))
         }catch (e: Exception){
             emit(Resource.Error(false, e.localizedMessage ?: "Unknown error"))

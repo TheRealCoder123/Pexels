@@ -1,8 +1,10 @@
 package com.upnext.pexels.data.repository
 
+import android.net.Uri
 import androidx.compose.runtime.rememberCoroutineScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.upnext.pexels.common.FirestoreCollections
 import com.upnext.pexels.common.Resource
 import com.upnext.pexels.data.remote.Post
@@ -19,7 +21,7 @@ import kotlinx.coroutines.tasks.await
 
 class IUserRepository(
     private val firestore: FirebaseFirestore,
-    private val auth: FirebaseAuth
+    private val auth: FirebaseAuth,
 ) : UserRepository {
 
     override suspend fun getUserData(userId: String): Flow<Resource<User>> = callbackFlow {
@@ -51,8 +53,10 @@ class IUserRepository(
             .get().await().toObjects(Post::class.java)
     }
 
-    override suspend fun updateUserProfile(field: String, value: String) {
+    override suspend fun updateUserProfile(userHashMap: HashMap<String, Any>) {
         firestore.collection(FirestoreCollections.Users.collection)
-            .document(getLoggedInUserId()).update(field, value).await()
+            .document(getLoggedInUserId()).update(userHashMap).await()
     }
+
+
 }

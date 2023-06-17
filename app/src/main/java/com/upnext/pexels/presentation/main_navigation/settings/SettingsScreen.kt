@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.gson.Gson
 import com.upnext.pexels.R
 import com.upnext.pexels.common.Constants
+import com.upnext.pexels.common.SocialUserPreferences
 import com.upnext.pexels.data.remote.Post
 import com.upnext.pexels.presentation.components.BlueButton
 import com.upnext.pexels.presentation.components.GrayBackgroundButton
@@ -78,8 +80,8 @@ fun SettingsScreen(
                         Text(text = user.tag, fontSize = 18.sp)
 
                         Box(modifier = Modifier.padding(5.dp)){
-                            GrayBackgroundButton(text = "Done"){
-
+                            GrayBackgroundButton(text = stringResource(R.string.done)){
+                                navController.navigateUp()
                             }
                         }
 
@@ -97,6 +99,7 @@ fun SettingsScreen(
                         },
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+
                     CircleImageView(
                         user.image.ifBlank {
                             R.drawable.no_profile_image
@@ -116,7 +119,7 @@ fun SettingsScreen(
 
                 Box(modifier = Modifier.padding(horizontal = 15.dp, vertical = 8.dp)){
                     SettingsNavView(
-                        title = "Email",
+                        title = stringResource(id = R.string.email),
                         value = user.email,
                         background = Color.Transparent
                     ) {
@@ -128,49 +131,38 @@ fun SettingsScreen(
 
                 Box(modifier = Modifier.padding(horizontal = 15.dp, vertical = 8.dp)){
                     SettingsNavView(
-                        title = "Instagram",
+                        title = stringResource(R.string.instagram),
                         value = user.instagram,
                         background = Color.Transparent
                     ) {
-
+                        navController.navigate(AuthScreens.AddSocialsScreen.route + "/${SocialUserPreferences.INSTAGRAM.name}")
                     }
                 }
 
                 Box(modifier = Modifier.padding(horizontal = 15.dp, vertical = 8.dp)){
                     SettingsNavView(
-                        title = "Twitter",
+                        title = stringResource(R.string.twitter),
                         value = user.twitter,
                         background = Color.Transparent
                     ) {
-
+                        navController.navigate(AuthScreens.AddSocialsScreen.route + "/${SocialUserPreferences.TWITTER.name}")
                     }
                 }
 
 
                 Box(modifier = Modifier.padding(horizontal = 15.dp, vertical = 8.dp)){
                     SettingsNavView(
-                        title = "Website",
+                        title = stringResource(R.string.website),
                         value = user.website,
                         background = Color.Transparent
                     ) {
-
+                        navController.navigate(AuthScreens.AddSocialsScreen.route + "/${SocialUserPreferences.WEBSITE.name}")
                     }
                 }
 
                 Box(modifier = Modifier.padding(horizontal = 15.dp, vertical = 8.dp)){
                     SettingsNavView(
-                        title = "Tag",
-                        value = user.tag,
-                        background = Color.Transparent
-                    ) {
-
-                    }
-                }
-
-
-                Box(modifier = Modifier.padding(horizontal = 15.dp, vertical = 8.dp)){
-                    SettingsNavView(
-                        title = "Language",
+                        title = stringResource(R.string.language),
                         value = "Us English",
                         background = Color.Transparent
                     ) {
@@ -181,7 +173,7 @@ fun SettingsScreen(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Logout",
+                    text = stringResource(R.string.logout),
                     color = Color.Blue,
                     modifier = Modifier
                         .fillMaxWidth()
