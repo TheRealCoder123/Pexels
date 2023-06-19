@@ -1,11 +1,11 @@
 package com.upnext.pexels.presentation.main_navigation
 
-import android.net.Uri
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.upnext.pexels.common.Constants.PARAM_POST_ID
+import com.upnext.pexels.presentation.main_navigation.PostView.PostViewScreen
 import com.upnext.pexels.presentation.main_navigation.auth.AuthScreen
 import com.upnext.pexels.presentation.main_navigation.home.HomeScreen
 import com.upnext.pexels.presentation.main_navigation.notifications.NotificationScreen
@@ -19,7 +19,9 @@ fun Navigation(navController: NavHostController) {
             HomeScreen(navController = navController)
         }
         composable(Screen.Search.route){
-            SearchScreen()
+            SearchScreen { postId ->
+                navController.navigate(Screen.PostViewScreen.route + "/${postId}")
+            }
         }
         composable(Screen.Notification.route){
             NotificationScreen()
@@ -29,6 +31,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(Screen.Create.route){
             UploadPostScreen(navController = navController)
+        }
+        composable(Screen.PostViewScreen.route + "/{${PARAM_POST_ID}}"){
+            PostViewScreen(navController)
         }
     }
 }

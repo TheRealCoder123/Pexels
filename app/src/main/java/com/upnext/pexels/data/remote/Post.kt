@@ -1,7 +1,6 @@
 package com.upnext.pexels.data.remote
 
 import com.upnext.pexels.common.Category
-import java.io.Serializable
 
 data class Post (
     val postId: String = "",
@@ -11,5 +10,6 @@ data class Post (
     val views: Int = 0,
     val downloads: Int = 0,
     val category: List<Category> = emptyList(),
-    val userId: String = ""
+    val userId: String = "",
+    val video: Boolean = false
     )

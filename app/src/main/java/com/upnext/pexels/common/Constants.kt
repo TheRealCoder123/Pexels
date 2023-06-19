@@ -11,6 +11,7 @@ object Constants {
     const val INTENT_PARAM_POSTS_TO_SERVICE = "INTENT_PARAM_POSTS_TO_SERVICE"
 
     const val PARAM_WHAT_SOCIAL_SHOULD_ADD = "what_social"
+    const val PARAM_POST_ID = "post_id"
 
     fun isLoggedIn() : Boolean {
         val auth = FirebaseAuth.getInstance()
